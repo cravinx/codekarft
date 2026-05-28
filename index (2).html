@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Codekarft — Business Automation & AI Integration</title>
+  <meta name="description" content="We automate the repetitive tasks draining your business. Python-powered automation and AI integration for forward-thinking businesses. Book a free consultation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --void: #0D1117;
+      --void2: #161B25;
+      --void3: #1E2535;
+      --violet: #7C3AED;
+      --violet-light: #9D65F5;
+      --violet-dim: #2D1B69;
+      --lavender: #A78BFA;
+      --ice: #F0F6FF;
+      --ice-dim: #B8CCEB;
+      --mono: 'DM Mono', monospace;
+      --display: 'Syne', sans-serif;
+      --body: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--void);
+      color: var(--ice);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5vw;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid rgba(124,58,237,0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-mark {
+      width: 34px;
+      height: 34px;
+    }
+
+    .nav-wordmark {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ice);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-wordmark span { color: var(--violet-light); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--ice-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+
+    .nav-links a:hover { color: var(--ice); }
+
+    .nav-cta {
+      background: var(--violet) !important;
+      color: var(--ice) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 14px !important;
+      font-weight: 500 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--violet-light) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 5vw 5rem;
+      position: relative;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--lavender);
+      border: 0.5px solid rgba(167,139,250,0.3);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet-light);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ice);
+      max-width: 14ch;
+      margin: 0 auto 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    h1 .accent { color: var(--violet-light); }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--ice-dim);
+      max-width: 52ch;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+      line-height: 1.6;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--violet);
+      color: var(--ice);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--violet-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--ice-dim);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 400;
+      text-decoration: none;
+      border: 0.5px solid rgba(176,194,219,0.25);
+      transition: border-color 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--lavender);
+      color: var(--ice);
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 0.5px solid rgba(124,58,237,0.2);
+      width: 100%;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .metric {
+      text-align: center;
+    }
+
+    .metric-val {
+      font-family: var(--display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--ice);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .metric-val span { color: var(--violet-light); }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--ice-dim);
+      margin-top: 6px;
+      font-weight: 300;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 7rem 5vw;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--violet-light);
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ice);
+      margin-bottom: 1.25rem;
+    }
+
+    h2 .accent { color: var(--violet-light); }
+
+    .section-lead {
+      font-size: 1.1rem;
+      color: var(--ice-dim);
+      max-width: 52ch;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    /* ─── PROBLEM SECTION ─── */
+    .problem {
+      background: var(--void2);
+      border-top: 0.5px solid rgba(124,58,237,0.15);
+      border-bottom: 0.5px solid rgba(124,58,237,0.15);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5px;
+      margin-top: 3.5rem;
+      border: 1.5px solid rgba(124,58,237,0.2);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .problem-item {
+      padding: 2rem;
+      background: var(--void2);
+      transition: background 0.2s;
+    }
+
+    .problem-item:hover { background: var(--void3); }
+
+    .problem-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .problem-item h3 {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ice);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .problem-item p {
+      font-size: 14px;
+      color: var(--ice-dim);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3.5rem;
+    }
+
+    .service-card {
+      background: var(--void2);
+      border: 0.5px solid rgba(124,58,237,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--violet), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(124,58,237,0.5);
+      transform: translateY(-4px);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-card.featured {
+      border-color: rgba(124,58,237,0.5);
+      background: linear-gradient(135deg, var(--void2) 0%, rgba(45,27,105,0.4) 100%);
+    }
+
+    .service-card.featured::before { opacity: 1; }
+
+    .service-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--violet-light);
+      border: 0.5px solid rgba(124,58,237,0.4);
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.06em;
+    }
+
+    .service-card h3 {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ice);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--ice-dim);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--ice-dim);
+    }
+
+    .service-features li::before {
+      content: '→';
+      color: var(--violet-light);
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .service-price {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 0.5px solid rgba(124,58,237,0.2);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price-from {
+      font-size: 12px;
+      color: var(--ice-dim);
+      font-family: var(--mono);
+    }
+
+    .price-val {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ice);
+    }
+
+    .price-note {
+      font-size: 12px;
+      color: var(--ice-dim);
+      font-weight: 300;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      background: var(--void2);
+      border-top: 0.5px solid rgba(124,58,237,0.15);
+      border-bottom: 0.5px solid rgba(124,58,237,0.15);
+    }
+
+    .steps {
+      margin-top: 3.5rem;
+      display: grid;
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 40px;
+      bottom: 40px;
+      width: 0.5px;
+      background: linear-gradient(to bottom, transparent, rgba(124,58,237,0.4), transparent);
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 0.5px solid rgba(124,58,237,0.1);
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--void3);
+      border: 0.5px solid rgba(124,58,237,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--violet-light);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-content h3 {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ice);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      padding-top: 10px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--ice-dim);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* ─── WHO IT'S FOR ─── */
+    .sectors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 3.5rem;
+    }
+
+    .sector {
+      background: var(--void2);
+      border: 0.5px solid rgba(124,58,237,0.15);
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .sector:hover {
+      border-color: rgba(124,58,237,0.4);
+      background: var(--void3);
+    }
+
+    .sector-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+
+    .sector h4 {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ice);
+      margin-bottom: 0.4rem;
+    }
+
+    .sector p {
+      font-size: 12px;
+      color: var(--ice-dim);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    /* ─── RESULTS BANNER ─── */
+    .results {
+      background: linear-gradient(135deg, var(--void2) 0%, rgba(45,27,105,0.5) 100%);
+      border-top: 0.5px solid rgba(124,58,237,0.3);
+      border-bottom: 0.5px solid rgba(124,58,237,0.3);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      margin-top: 3.5rem;
+    }
+
+    .result-item { text-align: center; }
+
+    .result-num {
+      font-family: var(--display);
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--violet-light);
+      line-height: 1;
+    }
+
+    .result-label {
+      font-size: 14px;
+      color: var(--ice-dim);
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(124,58,237,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-box {
+      background: var(--void2);
+      border: 0.5px solid rgba(124,58,237,0.35);
+      border-radius: 24px;
+      padding: 4rem 3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .cta-box h2 {
+      margin-bottom: 1rem;
+    }
+
+    .cta-box p {
+      font-size: 1.05rem;
+      color: var(--ice-dim);
+      max-width: 44ch;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .cta-note {
+      margin-top: 1.25rem;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(167,139,250,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 2.5rem 5vw;
+      border-top: 0.5px solid rgba(124,58,237,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .footer-wordmark {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ice-dim);
+      letter-spacing: -0.02em;
+    }
+
+    .footer-wordmark span { color: var(--violet-light); }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(176,194,219,0.4);
+      font-weight: 300;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(176,194,219,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--ice); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── CODE TICKER ─── */
+    .code-ticker {
+      margin-top: 4rem;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 2rem;
+      animation: ticker 30s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-item {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(124,58,237,0.5);
+      white-space: nowrap;
+      padding: 8px 16px;
+      border: 0.5px solid rgba(124,58,237,0.15);
+      border-radius: 6px;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 4vw; }
+      .nav-links { display: none; }
+      .steps::before { display: none; }
+      footer { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+      .cta-box { padding: 2.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-mark" viewBox="0 0 34 34" fill="none">
+      <rect width="34" height="34" rx="8" fill="#1A0D2E"/>
+      <rect x="5" y="5" width="24" height="24" rx="6" fill="#2D1B69"/>
+      <path d="M11 17 L15 13 L11 9" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M17 21 L23 21" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M17 17 L22 17" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+      <path d="M17 13 L20 13" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.3"/>
+    </svg>
+    <span class="nav-wordmark">code<span>karft</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#who">Who it's for</a></li>
+    <li><a href="#consult" class="nav-cta">Book a free call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+
+  <div class="hero-tag">// automation &amp; AI for real businesses</div>
+
+  <h1>Your business runs.<br><span class="accent">You shouldn't</span><br>have to.</h1>
+
+  <p class="hero-sub">
+    Every hour your team spends on manual, repetitive tasks is an hour not spent growing your business. We build Python-powered automation and AI systems that work while you sleep.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#consult" class="btn-primary">
+      Book a free consultation
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="#services" class="btn-ghost">See what we do</a>
+  </div>
+
+  <div class="hero-metrics">
+    <div class="metric">
+      <div class="metric-val">80<span>%</span></div>
+      <div class="metric-label">of repetitive tasks can be automated</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">10<span>×</span></div>
+      <div class="metric-label">faster than manual processing</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">0<span>h</span></div>
+      <div class="metric-label">maintenance needed once deployed</div>
+    </div>
+  </div>
+
+  <!-- CODE TICKER -->
+  <div class="code-ticker">
+    <div class="ticker-track">
+      <span class="ticker-item">automate_invoicing()</span>
+      <span class="ticker-item">send_client_followup()</span>
+      <span class="ticker-item">generate_weekly_report()</span>
+      <span class="ticker-item">sync_inventory()</span>
+      <span class="ticker-item">process_bookings()</span>
+      <span class="ticker-item">ai_respond_to_enquiries()</span>
+      <span class="ticker-item">track_leads()</span>
+      <span class="ticker-item">schedule_reminders()</span>
+      <span class="ticker-item">export_to_sheets()</span>
+      <span class="ticker-item">automate_invoicing()</span>
+      <span class="ticker-item">send_client_followup()</span>
+      <span class="ticker-item">generate_weekly_report()</span>
+      <span class="ticker-item">sync_inventory()</span>
+      <span class="ticker-item">process_bookings()</span>
+      <span class="ticker-item">ai_respond_to_enquiries()</span>
+      <span class="ticker-item">track_leads()</span>
+      <span class="ticker-item">schedule_reminders()</span>
+      <span class="ticker-item">export_to_sheets()</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">// the problem</span>
+      <h2>Sound <span class="accent">familiar?</span></h2>
+      <p class="section-lead">Most businesses are losing thousands of hours every year to tasks that technology solved a decade ago. They just don't know it yet.</p>
+    </div>
+
+    <div class="problem-grid reveal">
+      <div class="problem-item">
+        <div class="problem-icon">📋</div>
+        <h3>Copy-pasting data between systems</h3>
+        <p>Your team manually moves information between spreadsheets, emails, and software — every single day.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">📧</div>
+        <h3>Chasing clients manually</h3>
+        <p>Follow-up emails, payment reminders, appointment confirmations — all done one by one, taking hours each week.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">📊</div>
+        <h3>Reports built from scratch</h3>
+        <p>Someone spends hours compiling the same weekly or monthly report that could be generated automatically in seconds.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🔄</div>
+        <h3>Human error in repetitive tasks</h3>
+        <p>When humans do the same task hundreds of times, mistakes happen. Automated systems don't have bad days.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">💬</div>
+        <h3>Answering the same questions</h3>
+        <p>Your team responds to the same customer enquiries over and over. An AI assistant handles these 24/7 without breaking a sweat.</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🕐</div>
+        <h3>Decisions made without data</h3>
+        <p>No live dashboards, no automated alerts, no real-time visibility. Your team is flying blind when they don't have to be.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">// what we build</span>
+      <h2>Automation that <span class="accent">actually ships.</span></h2>
+      <p class="section-lead">Not demos. Not prototypes. Production systems that run in the background and handle the work your team was doing manually.</p>
+    </div>
+
+    <div class="services-grid reveal">
+
+      <div class="service-card">
+        <div class="service-badge">// workflow automation</div>
+        <h3>Business process automation</h3>
+        <p>We map your most time-consuming workflows and build Python scripts and integrations that handle them automatically — from end to end.</p>
+        <ul class="service-features">
+          <li>Invoice generation and sending</li>
+          <li>CRM data sync and updates</li>
+          <li>Inventory tracking and alerts</li>
+          <li>Automated client communications</li>
+          <li>Scheduled reporting pipelines</li>
+        </ul>
+        <div class="service-price">
+          <span class="price-from">from</span>
+          <span class="price-val">$400</span>
+          <span class="price-note">per project + optional monthly retainer</span>
+        </div>
+      </div>
+
+      <div class="service-card featured">
+        <div class="service-badge">// AI integration ★ most popular</div>
+        <h3>AI integration for your business</h3>
+        <p>Embed AI directly into your existing operations. From intelligent customer response systems to data extraction and decision-support tools built for your specific context.</p>
+        <ul class="service-features">
+          <li>AI-powered customer enquiry handling</li>
+          <li>Intelligent document processing</li>
+          <li>Lead scoring and qualification</li>
+          <li>Smart email drafting and follow-up</li>
+          <li>Custom AI assistants trained on your data</li>
+        </ul>
+        <div class="service-price">
+          <span class="price-from">from</span>
+          <span class="price-val">$600</span>
+          <span class="price-note">per project + optional monthly retainer</span>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-badge">// free first step</div>
+        <h3>Automation audit</h3>
+        <p>Not sure where to start? We spend 30 minutes with you, map your current operations, and hand you a clear report on exactly which processes are costing you the most time and money — and what it would take to fix them.</p>
+        <ul class="service-features">
+          <li>Process analysis and time mapping</li>
+          <li>ROI estimate per automation</li>
+          <li>Priority roadmap, no obligation</li>
+          <li>Honest assessment of what's possible</li>
+        </ul>
+        <div class="service-price">
+          <span class="price-from"></span>
+          <span class="price-val" style="color:var(--violet-light);">Free</span>
+          <span class="price-note">30-minute consultation call</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">// how it works</span>
+      <h2>Simple process.<br><span class="accent">Real results.</span></h2>
+      <p class="section-lead">No long discovery phases, no technical jargon, no unnecessary complexity. We move fast and we ship.</p>
+    </div>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Free consultation call</h3>
+          <p>We learn how your business actually operates — not how it's supposed to on paper. You show us your daily operations; we identify exactly where automation creates the most value. No sales pitch, just an honest conversation.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Proposal and scoping</h3>
+          <p>Within 48 hours you receive a clear proposal — what we'll build, how long it takes, what it costs, and what the expected time-saving impact is. Fixed price, no surprises.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Build and test</h3>
+          <p>We build your automation system and test it thoroughly before touching your live data. You get regular updates and a staging version to review before anything goes live.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>Go live and handover</h3>
+          <p>We deploy the system, walk your team through it, and make sure everything is running correctly. We document everything in plain English — not technical manuals.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <h3>Ongoing support (optional)</h3>
+          <p>For businesses that want peace of mind, we offer monthly retainer packages covering monitoring, updates, and priority support. Most clients find the system runs without intervention — but the option is there.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="who">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-tag">// who we work with</span>
+      <h2>Built for businesses<br>that <span class="accent">move fast.</span></h2>
+      <p class="section-lead">Any business with repetitive processes is a candidate. We've identified the sectors where automation delivers the fastest and clearest return.</p>
+    </div>
+
+    <div class="sectors reveal">
+      <div class="sector">
+        <div class="sector-icon">🏨</div>
+        <h4>Hotels & hospitality</h4>
+        <p>Booking confirmations, guest follow-up, review requests, supplier ordering.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🏠</div>
+        <h4>Real estate</h4>
+        <p>Lead tracking, automated client updates, listing reports, viewing schedules.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🍽️</div>
+        <h4>Restaurants & cafes</h4>
+        <p>Reservations, supplier comms, social posting, loyalty programme automation.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🏥</div>
+        <h4>Clinics & healthcare</h4>
+        <p>Appointment reminders, patient follow-up, billing workflows, intake forms.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">⚖️</div>
+        <h4>Legal & accounting</h4>
+        <p>Client intake, deadline tracking, document workflows, billing automation.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🚢</div>
+        <h4>Import & export</h4>
+        <p>Documentation, inventory sync, supplier communication, shipping alerts.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">🛍️</div>
+        <h4>Retail & e-commerce</h4>
+        <p>Order processing, stock alerts, customer comms, returns management.</p>
+      </div>
+      <div class="sector">
+        <div class="sector-icon">📈</div>
+        <h4>Professional services</h4>
+        <p>Proposal generation, project tracking, client reporting, invoice chasing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS BANNER -->
+<section class="results">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-tag">// what automation delivers</span>
+      <h2>Numbers that <span class="accent">matter.</span></h2>
+    </div>
+    <div class="results-grid reveal">
+      <div class="result-item">
+        <div class="result-num">15+</div>
+        <div class="result-label">hours saved per week on average for a typical SME</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">48h</div>
+        <div class="result-label">from signed proposal to first working prototype</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">3×</div>
+        <div class="result-label">average ROI within the first 3 months</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">100%</div>
+        <div class="result-label">of clients report significant time savings post-deployment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="consult">
+  <div class="container">
+    <div class="cta-glow"></div>
+    <div class="cta-box reveal">
+      <span class="section-tag">// let's talk</span>
+      <h2>Stop doing manually<br>what we can <span class="accent">automate today.</span></h2>
+      <p>Book a free 30-minute consultation. No sales pitch, no obligation. Just a straight conversation about where automation can save your business the most time and money.</p>
+      <a href="https://wa.me/+380964035181" class="btn-primary" target="_blank" rel="noopener">
+        Book your free consultation
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <p class="cta-note">// no commitment · no technical knowledge required · worldwide</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
+      <rect width="34" height="34" rx="8" fill="#1A0D2E"/>
+      <rect x="5" y="5" width="24" height="24" rx="6" fill="#2D1B69"/>
+      <path d="M11 17 L15 13 L11 9" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M17 21 L23 21" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M17 17 L22 17" stroke="#A78BFA" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.6"/>
+    </svg>
+    <span class="footer-wordmark">code<span>karft</span></span>
+  </a>
+  <p class="footer-copy">© 2026 Codekarft. Built different. Automated better.</p>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">Process</a></li>
+    <li><a href="#consult">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
